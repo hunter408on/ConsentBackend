@@ -6,19 +6,19 @@ var path = require('path');
 var PORT = process.env.PORT || 8001;;
 var resData = [];
 var resSearchData = [];
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('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');
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var sendgridOption = {
   auth :{
-     api_user : 'adrian09h',
+     api_user : 'alyonaka',
      api_key : 'Sec12345'
   }
 };
 var smtpTransport = nodemailer.createTransport({
     service : 'SendGrid',
     auth :{
-      api_user : 'adrian09h',
+      api_user : 'alyonaka',
       api_key : 'Sec12345'
    }
 });
@@ -32,13 +32,16 @@ app.use(bodyParser.urlencoded({
 app.post('/api/sendemail',sendemail);
 function sendemail(req,res){
     var email = req.body.email;
+    var from  = req.body.from;
+    var subject = req.body.subject;
     var message = req.body.message;
+    var text = req.body.text;
     var sendgrid_mailer = nodemailer.createTransport(sgTransport(sendgridOption));
     var sendgrid_email = {
         to: [email],
-        from: 'luke@rollseo.com',
-        subject: 'Consent Request',
-        text: 'Consent Request',
+        from: from,
+        subject: subject,
+        text: text,
         html: message
     };
     console.log("Post forgot processing" + "processed");
@@ -64,9 +67,9 @@ function sendsms(req,res){
         console.error(error);
         console.log('Sms message '+ messages);
         if (!error) {
-        res.json({'status':'success'});
+            res.json({'status':'success'});
         }else{
-        res.json({'status':'error'});
+            res.json({'status':'error'});
         }
     });
     
