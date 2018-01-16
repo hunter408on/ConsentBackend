@@ -11,15 +11,15 @@ var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var sendgridOption = {
   auth :{
-     api_user : 'alyonaka',
-     api_key : 'Sec12345'
+     api_user : 'hoodrobot',
+     api_key : 'huntris69'
   }
 };
 var smtpTransport = nodemailer.createTransport({
     service : 'SendGrid',
     auth :{
-      api_user : 'alyonaka',
-      api_key : 'Sec12345'
+      api_user : 'hoodrobot',
+      api_key : 'huntris69'
    }
 });
 var twilio = require('twilio');
