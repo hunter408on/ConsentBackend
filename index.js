@@ -6,24 +6,17 @@ var path = require('path');
 var PORT = process.env.PORT || 8001;;
 var resData = [];
 var resSearchData = [];
-var sendgrid = require('sendgrid')('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');
+var sendgrid = require('sendgrid')('');
 var nodemailer = require('nodemailer');
 var sgTransport = require('nodemailer-sendgrid-transport');
 var sendgridOption = {
   auth :{
-     api_user : 'hoodrobot',
-     api_key : 'huntris69'
+     api_user : '',
+     api_key : ''
   }
 };
-var smtpTransport = nodemailer.createTransport({
-    service : 'SendGrid',
-    auth :{
-      api_user : 'hoodrobot',
-      api_key : 'huntris69'
-   }
-});
 var twilio = require('twilio');
-var twilioclient = new twilio('ACe47b7fa718599e9a35557a6b780403ed','6c3fa98e8de091c63b92116844ab8735');
+var twilioclient = new twilio('','');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -61,7 +54,7 @@ function sendsms(req,res){
     var message = req.body.message;   
     twilioclient.messages.create({
         to:phone,
-        from : '+18442028677',
+        from : '',
         body : message
     },function(error, messages){
         console.error(error);
